@@ -1,14 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package learning;
 
-/**
- *
- * @author Felhasználó
- */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class DatabaseConnection {
+    final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    final String URL = "jdbc:mysql://192.168.66.249:8201/mega?zeroDateTimeBehavior=CONVERT_TO_NULL";
+    final String USERNAME = "";
+    final String PASSWORD = "";
     
+    public DatabaseConnection () {
+       
+        try {
+            Connection conn = DriverManager.getConnection(URL);
+        } catch (SQLException ex) {
+            System.out.println ("Nem sikeerült a kapcsolatot felépíteni! Hiba: " + ex);
+        }
+    }
 }
