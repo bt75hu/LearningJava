@@ -46,6 +46,7 @@ public class DatabaseConnect {
             
             try {
                 dbmeta = (DatabaseMetaData) conn.getMetaData();
+                System.out.println("MySQL Driver: " + dbmeta.getDriverName());
             } catch (SQLException ex) {
                 System.out.println ("Nem sikerült a MetaData kapcsolatot felépíteni! Hiba: " + ex);
             }
