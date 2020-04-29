@@ -10,13 +10,13 @@ import java.sql.Statement;      //Adatbázis Statement osztály
 import java.sql.ResultSet;
    
 public class DatabaseConnect {
-    final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    final String URL = "jdbc:mysql://192.168.66.249:8201/mega?zeroDateTimeBehavior=CONVERT_TO_NULL";
-    final String USERNAME = "root";
-    final String PASSWORD = "cart32";
-    Connection conn = null; 
-    Statement createStatement = null;
-    DatabaseMetaData dbmeta = null;
+    private final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    private final String URL = "jdbc:mysql://192.168.66.249:8201/mega?zeroDateTimeBehavior=CONVERT_TO_NULL";
+    private final String USERNAME = "root";
+    private final String PASSWORD = "cart32";
+    private Connection conn = null; 
+    private Statement createStatement = null;
+    private DatabaseMetaData dbmeta = null;
     
     
    

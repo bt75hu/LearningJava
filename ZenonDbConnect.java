@@ -17,13 +17,13 @@ public class ZenonDbConnect {
     final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
     final String USERNAME = "root";
     final String PASSWORD = "cart32";    
-    public String URL = "jdbc:mysql://192.168.66.249:8201/";
-    public Connection conn = null; 
-    public Statement createStatement = null;
-    public DatabaseMetaData dbMetaData = null;
-    public ResultSetMetaData resultMetaData;
-    public ResultSet result;
-    public String sql = null; 
+    private String URL = "jdbc:mysql://192.168.66.249:8201/";
+    private Connection conn = null; 
+    private Statement createStatement = null;
+    private DatabaseMetaData dbMetaData = null;
+    private ResultSetMetaData resultMetaData;
+    private ResultSet result;
+    private String sql = null; 
     
     public ZenonDbConnect () {
         System.out.println("Meg kell adni egy adatbázist! Például 'mega' vagy 'radio1'");
