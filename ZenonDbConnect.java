@@ -1,6 +1,10 @@
 /**
     * Zenon Adatbázis - v1.0.0.0
     * 
+    * MySQL Connector/J - 
+    * Verzió: mysql-connector-java-8.0.20 
+    * (Revision: afc0a13cd3c5a0bf57eaa809ee0ee6df1fd5ac9b)
+    * 
 */
 
 package learning;
