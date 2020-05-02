@@ -110,10 +110,8 @@ public class Audio {
          * kulcsa mindkét esetben egyenlő az adattábla mezőinek nevével, 
          * melyhez hozzárendeli a megfelelő értékeket.
          * 
-         * A mezők NEVÉT a ZenonDbConnect objektum columnNameArray tömbjéből 
-         * másolja,  
-         * a mezők típusát a ZenonDbConnect objektum columnTypeArray tömbjéből 
-         * másolja.
+         * A mezők NEVÉT a ZenonDbConnect objektum columnNameArray tömbjéből másolja,  
+         * a mezők típusát a ZenonDbConnect objektum columnTypeArray tömbjéből másolja.
          * 
          * A MAP típusokról bővebben: https://www.webotlet.hu/?p=1434
          * 
