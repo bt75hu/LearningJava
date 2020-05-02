@@ -223,7 +223,7 @@ public class ZenonDbConnect {
            try {
                result.beforeFirst();
            } catch (SQLException ex) {
-               System.out.println("Nem sikerült cursort az utolsóű sor elé mozgatni. " + ex);
+               System.out.println("Nem sikerült cursort az első sor elé mozgatni. " + ex);
                return 0;
            }
 

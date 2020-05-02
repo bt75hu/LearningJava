@@ -7,9 +7,11 @@ public class Learning {
 //        Audio_RotID a, b;
         // DatabaseConnect db = new DatabaseConnect ();
 //        a = new Audio_RotID();
-//        b = new Audio_RotID("radio1", "N022");
-       Audio audio = new Audio ("470094", "radio1");
-        System.out.println("(" + audio.rotationID + ") " + audio.name + " - " + audio.title);     
+//        b = new Audio_RotID("radio1", "86338");
+       Audio audio = new Audio ("86338", "radio1");
+        System.out.println("(" + audio.rotationID + ") " + audio.audioDbColsNameResult.get("NAME")
+                + " - " + audio.title + " (Kiadás éve: " + audio.released 
+                + " - Zsáner: " + audio.kind + " - Utolsó lejátszás: " + audio.broadcastDate);     
 //        
 //        zdb.setSQL ("SELECT * FROM `t_rotation` WHERE `NAME` LIKE 'Depec%' AND `s6` LIKE 'Z' AND `s3` LIKE 'K'");
 //        ResultSet queryResult = zdb.getIdNameTitleResult();

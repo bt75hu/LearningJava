@@ -1,10 +1,15 @@
 /**
  *
- * POJO Audio
+ * Audio Class
  * 
- * Ez az osztály megkap egy adatbázis lekérdezést, majd ebből egy HashMap 
- * objektumot hoz létre, melyben eltárolja az audio fájl adatbázisban szereplő
- * értékeit. 
+ * Ez az osztály egy ZenonDBConnect objektumon keresztül egy adatbázis 
+ * lekérdezésből, származó eredményből tölti be az Audio file adatbázisban
+ * tárolt adatait. 
+ * 
+ * Majd ebből egy HashMap objektumot hoz létre, melyben eltárolja az audio fájl 
+ * adatbázisban szereplő értékeit. 
+ * 
+ * Ezen kívül tárolja az adatbázis táblában lévő mezők nevét és típusát.
  * 
  * A HasMap osztály képes arra, hogy egy asszociatív tömbhöz hasonló objektumot 
  * hozzunk létre.
@@ -26,16 +31,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
+
 public class Audio {
     private static String thisClassNameToMessages = "(Audio Osztály) ";
     private int queryResultRow = 0; 
-    HashMap<String, String> audioDbResult = new HashMap<>();
-
+    HashMap<String, String> audioDbColsNameResult = new HashMap<>();
+    HashMap<String, String> audioDbColsTypeResult = new HashMap<>();
     private ZenonDbConnect zdb;
+    
     public String name;
     public String title;
     public String rotationID;
-    
+    public String broadcastDate;
+    public String released;
+    public String kind;
 
     public Audio () {
         Audio.audioHelp();
@@ -81,14 +90,7 @@ public class Audio {
 
                 if (queryResultRow == 1) {
                 
-                System.out.println(thisClassNameToMessages + "Sikeres visszatérés az következő eredménnyel: ");
-
-                queryResult.next();
-                    name = queryResult.getString("NAME");
-                    title = queryResult.getString("TITLE");
-                    rotationID = queryResult.getString("NUM_ROTATION");
-                    System.out.println("(" + rotationID + ") " + name + " - " + title);
-                
+                System.out.println(thisClassNameToMessages + "Sikeres visszatérés összesen: 1 eredménnyel.");
                 this.setAudioValues(queryResult);
                 
             } else if (queryResultRow > 1) {
@@ -101,9 +103,55 @@ public class Audio {
     }
 
     private void setAudioValues (ResultSet queryResult) {
-        String[] resultColumnNames = zdb.columnNameArray; 
-        String[] resultColumnTypes = zdb.columnTypeArray;
+        /** 
+         * A metódus HashMap típusú objektumba tölti be a táblából lekérdezett 
+         * rekord mezőinek értékeit, valamint egy másik HashMap osztályba 
+         * letárolja a mezők típusát is, későbbi használatra. Az objektum 
+         * kulcsa mindkét esetben egyenlő az adattábla mezőinek nevével, 
+         * melyhez hozzárendeli a megfelelő értékeket.
+         * 
+         * A mezők NEVÉT a ZenonDbConnect objektum columnNameArray tömbjéből 
+         * másolja,  
+         * a mezők típusát a ZenonDbConnect objektum columnTypeArray tömbjéből 
+         * másolja.
+         * 
+         * A MAP típusokról bővebben: https://www.webotlet.hu/?p=1434
+         * 
+         * @param ResultSet Result
+         * 
+         * Nincs visszatérési érték.
+         */        
+        String[] resultColumnNamesArray = zdb.columnNameArray; 
+        String[] resultColumnTypesArray = zdb.columnTypeArray;
         int resultNofColumns = zdb.resultNofColumns;
+        String columnValue;
+        try {
+            queryResult.first();            //Beállítjuk a cursort az első sorra, hogy biztosan abból olvassa az értékeket.
+            for (int i = 0; i < resultNofColumns; i++) {
+                audioDbColsTypeResult.put(resultColumnNamesArray [i], resultColumnTypesArray[i]);
+                try {
+                    columnValue = queryResult.getString(resultColumnNamesArray [i]);
+                    audioDbColsNameResult.put(resultColumnNamesArray [i], columnValue);
+                } catch (SQLException ex) {
+                    System.out.println(thisClassNameToMessages + "Nem sikerült kiolvasni a mező értékét. "
+                            + "(Mező: " + resultColumnNamesArray [i] +" Hiba: " + ex);
+                }
+            }
+            
+            name = audioDbColsNameResult.get("NAME");
+            title = audioDbColsNameResult.get("TITLE");
+            rotationID = audioDbColsNameResult.get("NUM_ROTATION");
+            released = audioDbColsNameResult.get("s1");
+            broadcastDate = audioDbColsNameResult.get("BROADCAST_DATE");
+            kind = audioDbColsNameResult.get("s10");
+
+        } catch (SQLException ex) {
+            System.out.println(thisClassNameToMessages + "Nem sikerült lekérdezés " +
+                    "eredményének tömbjében a cursort a következő rekordra állítani."
+            + "(Találatok száma: " + resultNofColumns + " Hiba: " + ex);
+        }
+        
+
     }
    
 
