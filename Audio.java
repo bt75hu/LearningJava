@@ -2,12 +2,10 @@
  *
  * Audio Class
  * 
- * Ez az osztály egy ZenonDBConnect objektumon keresztül egy adatbázis 
- * lekérdezésből, származó eredményből tölti be az Audio file adatbázisban
- * tárolt adatait. 
- * 
- * Majd ebből egy HashMap objektumot hoz létre, melyben eltárolja az audio fájl 
- * adatbázisban szereplő értékeit. 
+ * Ez az osztály egy ZenonDBConnect objektumon keresztül, egy adatbázis 
+ * lekérdezésből származó eredményből tölti be az audio file, adatbázisban
+ * tárolt adatait. Majd ebből egy HashMap objektumot hoz létre, melyben 
+ * eltárolja az audio fájl adatbázisban szereplő értékeit. 
  * 
  * Ezen kívül tárolja az adatbázis táblában lévő mezők nevét és típusát.
  * 
@@ -111,7 +109,7 @@ public class Audio {
          * melyhez hozzárendeli a megfelelő értékeket.
          * 
          * A mezők NEVÉT a ZenonDbConnect objektum columnNameArray tömbjéből másolja,  
-         * a mezők típusát a ZenonDbConnect objektum columnTypeArray tömbjéből másolja.
+         * a mezők TÍPUSÁT a ZenonDbConnect objektum columnTypeArray tömbjéből másolja.
          * 
          * A MAP típusokról bővebben: https://www.webotlet.hu/?p=1434
          * 
